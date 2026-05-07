@@ -1,0 +1,35 @@
+interface LogoProps {
+  className?: string
+  size?: 'sm' | 'md' | 'lg'
+}
+
+export default function Logo({ className = '', size = 'md' }: LogoProps) {
+  const sizes = {
+    sm: 'w-8 h-8',
+    md: 'w-10 h-10',
+    lg: 'w-12 h-12'
+  }
+
+  return (
+    <svg
+      className={`${sizes[size]} ${className}`}
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Background circle */}
+      <circle cx="50" cy="50" r="45" fill="black" />
+      
+      {/* Three colored segments representing the countries */}
+      <path d="M50 5 A45 45 0 0 1 95 50" stroke="#22c55e" strokeWidth="8" strokeLinecap="round" fill="none" />
+      <path d="M95 50 A45 45 0 0 1 50 95" stroke="#eab308" strokeWidth="8" strokeLinecap="round" fill="none" />
+      <path d="M50 95 A45 45 0 0 1 5 50" stroke="#ef4444" strokeWidth="8" strokeLinecap="round" fill="none" />
+      
+      {/* Musical note */}
+      <path
+        d="M35 30 V65 C35 72 28 75 22 75 C16 75 12 70 12 65 C12 58 18 55 22 55 C26 55 30 58 30 62 V30 L70 25 V60 C70 67 63 70 57 70 C51 70 47 65 47 60 C47 53 53 50 57 50 C61 50 65 53 65 57 V25 L35 30Z"
+        fill="white"
+      />
+    </svg>
+  )
+}
