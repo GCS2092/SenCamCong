@@ -14,7 +14,8 @@ export default async function BackgroundImage({ section, fallback, className = '
   
   console.log('BackgroundImage section:', section, 'result:', background)
 
-  if (!background) {
+  if (!background || !background.image || !background.image.asset || !background.image.asset.url) {
+    console.log('BackgroundImage: no valid image found, using fallback')
     return fallback || null
   }
 
@@ -25,10 +26,10 @@ export default async function BackgroundImage({ section, fallback, className = '
         alt={background.titre}
         fill
         priority
-        className="object-contain"
+        className="object-cover"
         sizes="100vw"
         quality={95}
-        style={{ objectFit: 'contain' }}
+        style={{ objectFit: 'cover', objectPosition: 'top center' }}
       />
       <div className={`absolute inset-0 ${overlayOpacity}`} />
     </div>
