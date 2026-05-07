@@ -38,8 +38,8 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col relative z-10">
         <ServiceWorkerRegister />
-        <div className="fixed inset-0 -z-10 bg-black">
-          <BackgroundImage section="global" overlayOpacity="bg-black/40" />
+        <div className="fixed inset-0 -z-10">
+          <BackgroundImage section="global" overlayOpacity="bg-black/20" />
         </div>
         {children}
       </body>
