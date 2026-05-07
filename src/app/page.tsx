@@ -22,9 +22,27 @@ export default function Home() {
       <Navigation />
       <Hero />
 
-      {/* Prochain Concert Section */}
+      {/* Notre Musique Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <FadeIn delay={100}>
+          <div className="flex gap-2 mb-6 md:mb-8">
+            <div className="w-8 md:w-12 h-1 bg-green-500"></div>
+            <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
+            <div className="w-8 md:w-12 h-1 bg-red-500"></div>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Notre Musique</h2>
+
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              En fusionnant leurs voix, leurs rythmes et leurs instruments, ils créent une alchimie musicale inédite : un voyage sonore où se croisent chants traditionnels, proverbes, récits vivants et danses envoûtantes.
+            </p>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* Prochain Concert Section */}
+      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <FadeIn delay={200}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-green-500"></div>
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
@@ -58,7 +76,7 @@ export default function Home() {
 
       {/* Membres Preview Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/50">
-        <FadeIn delay={200}>
+        <FadeIn delay={300}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
@@ -104,13 +122,19 @@ export default function Home() {
 
       {/* Nos Performances Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <FadeIn delay={300}>
+        <FadeIn delay={400}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
             <div className="w-8 md:w-12 h-1 bg-green-500"></div>
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Nos Performances</h2>
+
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12 mb-8">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Avec des arrangements à couper le souffle et une énergie scénique communicative, SenCamCong incarne l'Afrique qui se réinvente, qui se raconte et qui s'exporte.
+            </p>
+          </div>
 
           <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500 transition-all duration-300">
@@ -135,7 +159,7 @@ export default function Home() {
 
       {/* Notre Histoire Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/50">
-        <FadeIn delay={400}>
+        <FadeIn delay={500}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-green-500"></div>
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
@@ -144,6 +168,10 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Notre Histoire</h2>
 
           <div className="space-y-6 md:space-y-8">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Plus qu'un simple projet musical, SenCamCong est une célébration des similitudes rythmiques et des influences partagées entre ces trois nations. Dans un monde marqué par la globalisation, ce trio démontre que la force de la musique réside dans la mixité, le dialogue et la collaboration.
+            </p>
+            
             <div className="flex gap-4 md:gap-6">
               <div className="w-20 md:w-32 flex-shrink-0">
                 <div className="text-green-500 font-bold text-lg md:text-xl">2021</div>
@@ -186,7 +214,7 @@ export default function Home() {
 
       {/* À Propos Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <FadeIn delay={500}>
+        <FadeIn delay={600}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
@@ -215,6 +243,29 @@ export default function Home() {
               </div>
               <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Congo</h3>
               <p className="text-gray-400 text-sm md:text-base">Rumba congolaise, soukous et ndombolo pour une danse endiablée.</p>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/50">
+        <FadeIn delay={700}>
+          <div className="text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 md:mb-8">Un rendez-vous musical à ne pas manquer</h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/concerts"
+                className="inline-block px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+              >
+                Voir nos concerts
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-block px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105"
+              >
+                Nous contacter
+              </Link>
             </div>
           </div>
         </FadeIn>

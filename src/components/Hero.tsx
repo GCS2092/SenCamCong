@@ -34,7 +34,7 @@ export default function Hero() {
         </div>
 
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12">
-          Un fusion musical unique entre trois cultures africaines vibrantes
+          Quand le Sénégal, le Cameroun et le Congo s'unissent, la musique devient un langage universel. SenCamCong, c'est la rencontre exceptionnelle de trois artistes musiciens talentueux, chacun porteur de son héritage culturel et de son expérience artistique.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
