@@ -25,10 +25,10 @@ export default async function BackgroundImage({ section, fallback, className = '
         alt={background.titre}
         fill
         priority
-        className="object-cover object-center"
+        className="object-contain"
         sizes="100vw"
         quality={95}
-        style={{ objectFit: 'cover', objectPosition: 'center' }}
+        style={{ objectFit: 'contain' }}
       />
       <div className={`absolute inset-0 ${overlayOpacity}`} />
     </div>
