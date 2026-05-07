@@ -12,7 +12,7 @@ export const CONCERTS_QUERY = `
     affiche { asset->{ url } },
     lienTickets,
     statut,
-    prix,
+    prixFcfa,
     programme[] {
       heure,
       activite
@@ -34,7 +34,7 @@ export const CONCERT_BY_ID_QUERY = `
     affiche { asset->{ url } },
     lienTickets,
     statut,
-    prix,
+    prixFcfa,
     programme[] {
       heure,
       activite

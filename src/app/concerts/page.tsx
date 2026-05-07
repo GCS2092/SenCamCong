@@ -17,7 +17,8 @@ export default async function ConcertsPage() {
       ville: "Paris",
       description: "Une soirée explosive avec les sons du Sénégal, Cameroun et Congo",
       statut: "a-venir",
-      lienTickets: "#"
+      lienTickets: "#",
+      prixFcfa: 25000
     },
     {
       _id: "2",
@@ -27,7 +28,8 @@ export default async function ConcertsPage() {
       ville: "Lyon",
       description: "Célébration de la musique africaine",
       statut: "a-venir",
-      lienTickets: "#"
+      lienTickets: "#",
+      prixFcfa: 20000
     },
     {
       _id: "3",
@@ -37,7 +39,8 @@ export default async function ConcertsPage() {
       ville: "Marseille",
       description: "Au profit des écoles en Afrique",
       statut: "a-venir",
-      lienTickets: "#"
+      lienTickets: "#",
+      prixFcfa: 15000
     },
     {
       _id: "4",
@@ -47,7 +50,8 @@ export default async function ConcertsPage() {
       ville: "Bordeaux",
       description: "Grande scène en plein air",
       statut: "a-venir",
-      lienTickets: "#"
+      lienTickets: "#",
+      prixFcfa: 30000
     },
     {
       _id: "5",
@@ -57,7 +61,8 @@ export default async function ConcertsPage() {
       ville: "Paris",
       description: "Soirée exclusive",
       statut: "a-venir",
-      lienTickets: "#"
+      lienTickets: "#",
+      prixFcfa: 50000
     },
     {
       _id: "6",
@@ -67,7 +72,8 @@ export default async function ConcertsPage() {
       ville: "Paris",
       description: "Grand final de l'année",
       statut: "a-venir",
-      lienTickets: "#"
+      lienTickets: "#",
+      prixFcfa: 40000
     }
   ]
 

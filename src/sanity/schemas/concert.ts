@@ -79,10 +79,11 @@ export default {
       initialValue: 'a-venir'
     },
     {
-      name: 'prix',
-      type: 'string',
-      title: 'Prix',
-      description: 'Ex: À partir de 35€'
+      name: 'prixFcfa',
+      type: 'number',
+      title: 'Prix (FCFA)',
+      description: 'Prix en Francs CFA',
+      validation: (Rule: any) => Rule.required().min(0)
     },
     {
       name: 'programme',

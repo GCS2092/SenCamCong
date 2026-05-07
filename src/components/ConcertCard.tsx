@@ -12,6 +12,7 @@ interface ConcertCardProps {
     description: string
     statut: string
     lienTickets?: string
+    prixFcfa?: number
     affiche?: {
       asset?: {
         url?: string
@@ -93,6 +94,14 @@ export default function ConcertCard({ concert }: ConcertCardProps) {
         </div>
 
         <p className="text-gray-400 text-sm mb-6 line-clamp-2 group-hover:text-white transition-colors duration-300">{concert.description}</p>
+
+        {concert.prixFcfa && (
+          <div className="mb-6">
+            <p className="text-green-500 font-bold text-lg group-hover:text-white transition-colors duration-300">
+              {concert.prixFcfa.toLocaleString()} FCFA
+            </p>
+          </div>
+        )}
 
         <div className="flex gap-3">
           {id && (
