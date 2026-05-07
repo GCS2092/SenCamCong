@@ -4,6 +4,8 @@ import BackgroundImage from '@/components/BackgroundImage'
 import { client } from '@/sanity/client'
 import { CONCERTS_QUERY } from '@/sanity/queries'
 
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "33612345678"
+
 export default async function ConcertsPage() {
   const concerts = await client.fetch(CONCERTS_QUERY)
 
@@ -115,7 +117,7 @@ export default async function ConcertsPage() {
 
         <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {concertsToShow.map((concert: any) => (
-            <ConcertCard key={concert._id} concert={concert} />
+            <ConcertCard key={concert._id} concert={concert} whatsappNumber={whatsappNumber} />
           ))}
         </div>
       </main>

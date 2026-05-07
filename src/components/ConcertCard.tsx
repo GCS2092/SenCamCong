@@ -19,9 +19,10 @@ interface ConcertCardProps {
       }
     }
   }
+  whatsappNumber?: string
 }
 
-export default function ConcertCard({ concert }: ConcertCardProps) {
+export default function ConcertCard({ concert, whatsappNumber = "33612345678" }: ConcertCardProps) {
   const id = concert._id || concert.id
 
   const statutLabels = {
@@ -29,6 +30,9 @@ export default function ConcertCard({ concert }: ConcertCardProps) {
     'passe': 'Passé',
     'complet': 'Complet'
   }
+
+  const whatsappMessage = `Bonjour, je souhaite réserver des places pour le concert "${concert.titre}" le ${concert.date} à ${concert.lieu}. Merci de me renseigner sur les disponibilités.`
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
     <Card status={concert.statut as any} hover>
@@ -104,16 +108,9 @@ export default function ConcertCard({ concert }: ConcertCardProps) {
         )}
 
         <div className="flex gap-3">
-          {id && (
-            <Link href={`/concerts/${id}`} className="flex-1">
-              <Button variant="secondary" size="full">
-                Détails
-              </Button>
-            </Link>
-          )}
-          {concert.lienTickets && concert.statut === 'a-venir' && (
+          {concert.statut === 'a-venir' && (
             <Button
-              href={concert.lienTickets}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               variant="primary"
