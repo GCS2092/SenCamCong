@@ -116,3 +116,42 @@ export const BACKGROUND_BY_SECTION_QUERY = `
     sectionBackground
   }
 `
+
+export const NOTRE_MUSIQUE_QUERY = `
+  *[_type == "notreMusique"][0] {
+    titre,
+    description
+  }
+`
+
+export const NOS_PERFORMANCES_QUERY = `
+  *[_type == "nosPerformances"][0] {
+    titre,
+    description,
+    concerts,
+    pays,
+    spectateurs,
+    albums
+  }
+`
+
+export const NOTRE_HISTOIRE_QUERY = `
+  *[_type == "notreHistoire"][0] {
+    titre,
+    description,
+    evenements[] {
+      annee,
+      titre,
+      description
+    }
+  }
+`
+
+export const A_PROPOS_QUERY = `
+  *[_type == "aPropos"][0] {
+    titre,
+    senegal { titre, description },
+    cameroun { titre, description },
+    congo { titre, description }
+  }
+`

@@ -3,11 +3,15 @@ import Hero from '@/components/Hero'
 import Link from 'next/link'
 import FadeIn from '@/components/FadeIn'
 import { client } from '@/sanity/client'
-import { MEMBRES_QUERY, CONCERTS_A_VENIR_QUERY } from '@/sanity/queries'
+import { MEMBRES_QUERY, CONCERTS_A_VENIR_QUERY, NOTRE_MUSIQUE_QUERY, NOS_PERFORMANCES_QUERY, NOTRE_HISTOIRE_QUERY, A_PROPOS_QUERY } from '@/sanity/queries'
 
 export default async function Home() {
   const membres = await client.fetch(MEMBRES_QUERY)
   const concerts = await client.fetch(CONCERTS_A_VENIR_QUERY)
+  const notreMusique = await client.fetch(NOTRE_MUSIQUE_QUERY)
+  const nosPerformances = await client.fetch(NOS_PERFORMANCES_QUERY)
+  const notreHistoire = await client.fetch(NOTRE_HISTOIRE_QUERY)
+  const aPropos = await client.fetch(A_PROPOS_QUERY)
 
   const prochainConcert = concerts.length > 0 ? {
     titre: concerts[0].titre,
@@ -40,11 +44,11 @@ export default async function Home() {
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Notre Musique</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{notreMusique?.titre || "Notre Musique"}</h2>
 
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              En fusionnant leurs voix, leurs rythmes et leurs instruments, ils créent une alchimie musicale inédite : un voyage sonore où se croisent chants traditionnels, proverbes, récits vivants et danses envoûtantes.
+              {notreMusique?.description || "En fusionnant leurs voix, leurs rythmes et leurs instruments, ils créent une alchimie musicale inédite : un voyage sonore où se croisent chants traditionnels, proverbes, récits vivants et danses envoûtantes."}
             </p>
           </div>
         </FadeIn>
@@ -96,7 +100,7 @@ export default async function Home() {
           <p className="text-lg md:text-xl text-gray-400 mb-8 md:mb-12">Les talents de SenCamCong</p>
 
           <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {membresPreview.map((membre, index) => (
+            {membresPreview.map((membre: { nom: string; role: string; origine: string }, index: number) => (
               <div
                 key={membre.nom}
                 className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-yellow-500 transition-all duration-300"
@@ -138,29 +142,29 @@ export default async function Home() {
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
             <div className="w-8 md:w-12 h-1 bg-green-500"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Nos Performances</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{nosPerformances?.titre || "Nos Performances"}</h2>
 
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12 mb-8">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Avec des arrangements à couper le souffle et une énergie scénique communicative, SenCamCong incarne l'Afrique qui se réinvente, qui se raconte et qui s'exporte.
+              {nosPerformances?.description || "Avec des arrangements à couper le souffle et une énergie scénique communicative, SenCamCong incarne l'Afrique qui se réinvente, qui se raconte et qui s'exporte."}
             </p>
           </div>
 
           <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500 transition-all duration-300">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-500 mb-1 md:mb-2">150+</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-500 mb-1 md:mb-2">{nosPerformances?.concerts || "150+"}</div>
               <div className="text-white text-sm md:text-base">Concerts</div>
             </div>
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500 transition-all duration-300">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 mb-1 md:mb-2">12</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 mb-1 md:mb-2">{nosPerformances?.pays || "12"}</div>
               <div className="text-white text-sm md:text-base">Pays</div>
             </div>
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-green-500 transition-all duration-300">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-500 mb-1 md:mb-2">50K+</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-500 mb-1 md:mb-2">{nosPerformances?.spectateurs || "50K+"}</div>
               <div className="text-white text-sm md:text-base">Spectateurs</div>
             </div>
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500 transition-all duration-300">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 mb-1 md:mb-2">5</div>
+              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 mb-1 md:mb-2">{nosPerformances?.albums || "5"}</div>
               <div className="text-white text-sm md:text-base">Albums</div>
             </div>
           </div>
@@ -175,49 +179,67 @@ export default async function Home() {
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Notre Histoire</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{notreHistoire?.titre || "Notre Histoire"}</h2>
 
           <div className="space-y-6 md:space-y-8">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Plus qu'un simple projet musical, SenCamCong est une célébration des similitudes rythmiques et des influences partagées entre ces trois nations. Dans un monde marqué par la globalisation, ce trio démontre que la force de la musique réside dans la mixité, le dialogue et la collaboration.
+              {notreHistoire?.description || "Plus qu'un simple projet musical, SenCamCong est une célébration des similitudes rythmiques et des influences partagées entre ces trois nations. Dans un monde marqué par la globalisation, ce trio démontre que la force de la musique réside dans la mixité, le dialogue et la collaboration."}
             </p>
             
-            <div className="flex gap-4 md:gap-6">
-              <div className="w-20 md:w-32 flex-shrink-0">
-                <div className="text-green-500 font-bold text-lg md:text-xl">2021</div>
+            {(notreHistoire?.evenements || []).map((evenement: any, index: number) => (
+              <div key={index} className="flex gap-4 md:gap-6">
+                <div className="w-20 md:w-32 flex-shrink-0">
+                  <div className={`${index === 0 ? 'text-green-500' : index === 1 ? 'text-yellow-500' : 'text-red-500'} font-bold text-lg md:text-xl`}>
+                    {evenement.annee}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{evenement.titre}</h3>
+                  <p className="text-gray-400 text-sm md:text-base">{evenement.description}</p>
+                </div>
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">La Création</h3>
-                <p className="text-gray-400 text-sm md:text-base">Trois musiciens se rencontrent à Paris avec une vision commune : fusionner les musiques du Sénégal, Cameroun et Congo.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 md:gap-6">
-              <div className="w-20 md:w-32 flex-shrink-0">
-                <div className="text-yellow-500 font-bold text-lg md:text-xl">2022</div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Premier Album</h3>
-                <p className="text-gray-400 text-sm md:text-base">Sortie de "Trois Terres, Une Voix" qui propulse le groupe sur la scène internationale.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 md:gap-6">
-              <div className="w-20 md:w-32 flex-shrink-0">
-                <div className="text-red-500 font-bold text-lg md:text-xl">2023</div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Tournée Mondiale</h3>
-                <p className="text-gray-400 text-sm md:text-base">Tournée à travers l'Europe, l'Afrique et l'Amérique du Nord avec des salles combles.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 md:gap-6">
-              <div className="w-20 md:w-32 flex-shrink-0">
-                <div className="text-green-500 font-bold text-lg md:text-xl">2024</div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Reconnaissance</h3>
-                <p className="text-gray-400 text-sm md:text-base">Prix du Meilleur Groupe Africain aux World Music Awards et collaboration avec des artistes internationaux.</p>
-              </div>
-            </div>
+            ))}
+            
+            {(!notreHistoire?.evenements || notreHistoire.evenements.length === 0) && (
+              <>
+                <div className="flex gap-4 md:gap-6">
+                  <div className="w-20 md:w-32 flex-shrink-0">
+                    <div className="text-green-500 font-bold text-lg md:text-xl">2021</div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">La Création</h3>
+                    <p className="text-gray-400 text-sm md:text-base">Trois musiciens se rencontrent à Paris avec une vision commune : fusionner les musiques du Sénégal, Cameroun et Congo.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 md:gap-6">
+                  <div className="w-20 md:w-32 flex-shrink-0">
+                    <div className="text-yellow-500 font-bold text-lg md:text-xl">2022</div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Premier Album</h3>
+                    <p className="text-gray-400 text-sm md:text-base">Sortie de "Trois Terres, Une Voix" qui propulse le groupe sur la scène internationale.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 md:gap-6">
+                  <div className="w-20 md:w-32 flex-shrink-0">
+                    <div className="text-red-500 font-bold text-lg md:text-xl">2023</div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Tournée Mondiale</h3>
+                    <p className="text-gray-400 text-sm md:text-base">Tournée à travers l'Europe, l'Afrique et l'Amérique du Nord avec des salles combles.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 md:gap-6">
+                  <div className="w-20 md:w-32 flex-shrink-0">
+                    <div className="text-green-500 font-bold text-lg md:text-xl">2024</div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Reconnaissance</h3>
+                    <p className="text-gray-400 text-sm md:text-base">Prix du Meilleur Groupe Africain aux World Music Awards et collaboration avec des artistes internationaux.</p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </FadeIn>
       </section>
@@ -230,29 +252,29 @@ export default async function Home() {
             <div className="w-8 md:w-12 h-1 bg-red-500"></div>
             <div className="w-8 md:w-12 h-1 bg-green-500"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">À Propos</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{aPropos?.titre || "À Propos"}</h2>
 
           <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-green-500 transition-all duration-300">
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-green-500 flex items-center justify-center mb-3 md:mb-4">
                 <span className="text-xl md:text-2xl font-bold text-white">SN</span>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Sénégal</h3>
-              <p className="text-gray-400 text-sm md:text-base">Rythmes wolof, sabar et mbalax pour une énergie pure et authentique.</p>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{aPropos?.senegal?.titre || "Sénégal"}</h3>
+              <p className="text-gray-400 text-sm md:text-base">{aPropos?.senegal?.description || "Rythmes wolof, sabar et mbalax pour une énergie pure et authentique."}</p>
             </div>
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500 transition-all duration-300">
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-yellow-500 flex items-center justify-center mb-3 md:mb-4">
                 <span className="text-xl md:text-2xl font-bold text-white">CM</span>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Cameroun</h3>
-              <p className="text-gray-400 text-sm md:text-base">Influences makossa, bikutsi et afrobeat pour une fusion moderne.</p>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{aPropos?.cameroun?.titre || "Cameroun"}</h3>
+              <p className="text-gray-400 text-sm md:text-base">{aPropos?.cameroun?.description || "Influences makossa, bikutsi et afrobeat pour une fusion moderne."}</p>
             </div>
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500 transition-all duration-300">
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-red-500 flex items-center justify-center mb-3 md:mb-4">
                 <span className="text-xl md:text-2xl font-bold text-white">CG</span>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Congo</h3>
-              <p className="text-gray-400 text-sm md:text-base">Rumba congolaise, soukous et ndombolo pour une danse endiablée.</p>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{aPropos?.congo?.titre || "Congo"}</h3>
+              <p className="text-gray-400 text-sm md:text-base">{aPropos?.congo?.description || "Rumba congolaise, soukous et ndombolo pour une danse endiablée."}</p>
             </div>
           </div>
         </FadeIn>
