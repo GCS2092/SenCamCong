@@ -2,16 +2,26 @@ import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import Link from 'next/link'
 import FadeIn from '@/components/FadeIn'
+import { client } from '@/sanity/client'
+import { MEMBRES_QUERY, CONCERTS_A_VENIR_QUERY } from '@/sanity/queries'
 
-export default function Home() {
-  const prochainConcert = {
+export default async function Home() {
+  const membres = await client.fetch(MEMBRES_QUERY)
+  const concerts = await client.fetch(CONCERTS_A_VENIR_QUERY)
+
+  const prochainConcert = concerts.length > 0 ? {
+    titre: concerts[0].titre,
+    date: new Date(concerts[0].date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
+    lieu: concerts[0].lieu,
+    description: concerts[0].description
+  } : {
     titre: "Festival Afrobeat",
     date: "15 Juin 2026",
     lieu: "Olympia, Paris",
     description: "Une soirée explosive avec les sons du Sénégal, Cameroun et Congo"
   }
 
-  const membresPreview = [
+  const membresPreview = membres.length > 0 ? membres.slice(0, 3) : [
     { nom: "Amadou Diallo", role: "Chant / Percussions", origine: "Sénégal" },
     { nom: "Jean-Pierre Mba", role: "Guitare / Composition", origine: "Cameroun" },
     { nom: "Marie-Claire Nsangi", role: "Chant / Danse", origine: "Congo" }
