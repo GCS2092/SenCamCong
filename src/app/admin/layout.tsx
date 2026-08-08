@@ -26,9 +26,8 @@ export default function AdminLayout({
               Admin SenCamCong
             </span>
           </Link>
-          {/* Le lien de déconnexion sera branché à l'étape backend (middleware + cookie) */}
           <Link
-            href="/admin/logout"
+            href="/api/admin/logout"
             className="text-sm text-gray-400 hover:text-white transition-colors"
           >
             Déconnexion
