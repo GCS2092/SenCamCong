@@ -116,7 +116,7 @@ export default function NouveauConcertPage() {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>Date *</label>
             <input
@@ -251,7 +251,7 @@ export default function NouveauConcertPage() {
 
           <div className="space-y-3">
             {programme.map((item, index) => (
-              <div key={index} className="flex gap-2">
+              <div key={index} className="flex gap-2 min-w-0">
                 <input
                   placeholder="Heure"
                   value={item.heure}

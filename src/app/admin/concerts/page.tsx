@@ -3,9 +3,6 @@ import { Plus } from "lucide-react";
 import { client } from "@/sanity/client";
 import { CONCERTS_QUERY } from "@/sanity/queries";
 
-// Réutilise le client Sanity EXISTANT (lecture seule, déjà configuré).
-// Aucune modification nécessaire côté lecture : on affiche les vrais
-// concerts déjà présents dans votre dataset.
 export default async function AdminConcertsPage() {
   const concerts = await client.fetch(CONCERTS_QUERY);
 
@@ -17,11 +14,11 @@ export default async function AdminConcertsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold text-white">Concerts</h1>
         <Link
           href="/admin/concerts/nouveau"
-          className="flex items-center gap-2 px-4 py-2 bg-white text-black font-semibold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 text-sm"
+          className="flex items-center gap-2 px-4 py-2 bg-white text-black font-semibold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 text-sm flex-shrink-0"
         >
           <Plus className="w-4 h-4" />
           Ajouter
@@ -39,15 +36,15 @@ export default async function AdminConcertsPage() {
           <Link
             key={concert._id}
             href={`/admin/concerts/${concert._id}`}
-            className="flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-green-500 transition-all duration-300"
+            className="flex items-center justify-between gap-3 bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-green-500 transition-all duration-300"
           >
-            <div>
-              <h3 className="text-white font-semibold">{concert.titre}</h3>
-              <p className="text-gray-400 text-sm">
+            <div className="min-w-0">
+              <h3 className="text-white font-semibold truncate">{concert.titre}</h3>
+              <p className="text-gray-400 text-sm truncate">
                 {concert.ville} · {new Date(concert.date).toLocaleDateString("fr-FR")}
               </p>
             </div>
-            <span className="text-xs uppercase tracking-wider text-gray-500">
+            <span className="text-xs uppercase tracking-wider text-gray-500 flex-shrink-0">
               {statutLabels[concert.statut] || concert.statut}
             </span>
           </Link>
