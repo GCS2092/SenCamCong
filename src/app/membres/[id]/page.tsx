@@ -16,12 +16,17 @@ interface Membre {
   photo?: { asset?: { url?: string } }
 }
 
+interface PageProps {
+  params: Promise<{ id: string }>
+}
+
 async function getMembre(id: string): Promise<Membre | null> {
   return client.fetch(MEMBRE_BY_ID_QUERY, { id })
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const membre = await getMembre(params.id)
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params
+  const membre = await getMembre(id)
   if (!membre) {
     return { title: 'Membre introuvable' }
   }
@@ -36,8 +41,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 }
 
-export default async function MembreDetailPage({ params }: { params: { id: string } }) {
-  const membre = await getMembre(params.id)
+export default async function MembreDetailPage({ params }: PageProps) {
+  const { id } = await params
+  const membre = await getMembre(id)
 
   if (!membre) {
     notFound()

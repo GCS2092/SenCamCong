@@ -23,12 +23,17 @@ interface Concert {
   programme?: { heure: string; activite: string }[]
 }
 
+interface PageProps {
+  params: Promise<{ id: string }>
+}
+
 async function getConcert(id: string): Promise<Concert | null> {
   return client.fetch(CONCERT_BY_ID_QUERY, { id })
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const concert = await getConcert(params.id)
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params
+  const concert = await getConcert(id)
   if (!concert) {
     return { title: 'Concert introuvable' }
   }
@@ -50,8 +55,9 @@ const statutLabels: Record<string, string> = {
   'complet': 'Complet',
 }
 
-export default async function ConcertDetailPage({ params }: { params: { id: string } }) {
-  const concert = await getConcert(params.id)
+export default async function ConcertDetailPage({ params }: PageProps) {
+  const { id } = await params
+  const concert = await getConcert(id)
 
   if (!concert) {
     notFound()
