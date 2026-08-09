@@ -149,7 +149,7 @@ export default async function ConcertDetailPage({ params }: { params: { id: stri
                 )}
               </div>
               {concert.lienTickets && concert.statut === 'a-venir' && (
-                
+                <a
                   href={concert.lienTickets}
                   target="_blank"
                   rel="noopener noreferrer"
