@@ -1,4 +1,11 @@
-import Navigation from '@/components/Navigation'
+﻿import Navigation from '@/components/Navigation'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Nos Membres",
+  description: "Decouvrez les artistes de SenCamCong, musiciens venus du Senegal, du Cameroun et du Congo.",
+}
+
 import MembreCard from '@/components/MembreCard'
 import BackgroundImage from '@/components/BackgroundImage'
 import { client } from '@/sanity/client'
@@ -7,34 +14,34 @@ import { MEMBRES_QUERY } from '@/sanity/queries'
 export default async function MembresPage() {
   const membres = await client.fetch(MEMBRES_QUERY)
 
-  // Fallback aux données mockées si Sanity n'est pas configuré
+  // Fallback aux donnÃ©es mockÃ©es si Sanity n'est pas configurÃ©
   const fallbackMembres = [
     {
       _id: "1",
       nom: "Amadou Diallo",
       role: "Chant / Percussions",
-      origine: "Sénégal",
-      bio: "Maître du djembe et des chants traditionnels wolof avec plus de 20 ans d'expérience"
+      origine: "SÃ©nÃ©gal",
+      bio: "MaÃ®tre du djembe et des chants traditionnels wolof avec plus de 20 ans d'expÃ©rience"
     },
     {
       _id: "2",
       nom: "Jean-Pierre Mba",
       role: "Guitare / Composition",
       origine: "Cameroun",
-      bio: "Fusion de makossa et de jazz moderne, diplômé du Conservatoire de Douala"
+      bio: "Fusion de makossa et de jazz moderne, diplÃ´mÃ© du Conservatoire de Douala"
     },
     {
       _id: "3",
       nom: "Marie-Claire Nsangi",
       role: "Chant / Danse",
       origine: "Congo",
-      bio: "Voix puissante inspirée du rumba congolais, ancienne star de Kinshasa"
+      bio: "Voix puissante inspirÃ©e du rumba congolais, ancienne star de Kinshasa"
     },
     {
       _id: "4",
       nom: "Ibrahima Fall",
       role: "Basse",
-      origine: "Sénégal",
+      origine: "SÃ©nÃ©gal",
       bio: "Rythmes deep afrobeat, collaborateur avec des artistes internationaux"
     },
     {
@@ -42,14 +49,14 @@ export default async function MembresPage() {
       nom: "Emmanuel Etame",
       role: "Claviers",
       origine: "Cameroun",
-      bio: "Mélodies inspirées du bikutsi, virtuose du piano et des synthétiseurs"
+      bio: "MÃ©lodies inspirÃ©es du bikutsi, virtuose du piano et des synthÃ©tiseurs"
     },
     {
       _id: "6",
-      nom: "Félicien Mputu",
+      nom: "FÃ©licien Mputu",
       role: "Batterie",
       origine: "Congo",
-      bio: "Energie pure du soukous, percussionniste renommé en Afrique centrale"
+      bio: "Energie pure du soukous, percussionniste renommÃ© en Afrique centrale"
     }
   ]
 

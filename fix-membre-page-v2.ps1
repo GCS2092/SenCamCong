@@ -1,4 +1,5 @@
-﻿import Navigation from '@/components/Navigation'
+$content = @'
+import Navigation from '@/components/Navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -122,7 +123,14 @@ export default async function MembreDetailPage({ params }: { params: { id: strin
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
               <h3 className="text-xl font-bold text-white mb-4">Reseaux sociaux</h3>
               <div className="flex gap-3">
-                <a href="https://www.instagram.com/sencamcong/" target="_blank" rel="noopener noreferrer" className="flex-1 px-4 py-3 bg-zinc-800 rounded-lg hover:bg-green-500 transition-colors text-white text-center">Instagram</a>
+                
+                  href="https://www.instagram.com/sencamcong/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 px-4 py-3 bg-zinc-800 rounded-lg hover:bg-green-500 transition-colors text-white text-center"
+                >
+                  Instagram
+                </a>
               </div>
             </div>
           </div>
@@ -133,3 +141,7 @@ export default async function MembreDetailPage({ params }: { params: { id: strin
 }
 
 export const revalidate = 60
+'@
+
+[System.IO.File]::WriteAllText("$PWD\src\app\membres\[id]\page.tsx", $content, [System.Text.Encoding]::UTF8)
+Write-Output "Fichier membre reecrit avec succes"

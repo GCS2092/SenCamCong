@@ -1,4 +1,5 @@
-﻿import Navigation from '@/components/Navigation'
+$content = @'
+import Navigation from '@/components/Navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -133,3 +134,7 @@ export default async function MembreDetailPage({ params }: { params: { id: strin
 }
 
 export const revalidate = 60
+'@
+
+[System.IO.File]::WriteAllText("$PWD\src\app\membres\[id]\page.tsx", $content, [System.Text.Encoding]::UTF8)
+Write-Output "Fichier membre reecrit avec succes"

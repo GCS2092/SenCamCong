@@ -1,4 +1,11 @@
-import Navigation from '@/components/Navigation'
+﻿import Navigation from '@/components/Navigation'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Galerie",
+  description: "Revivez les meilleurs moments de SenCamCong en concert : photos, videos et coulisses.",
+}
+
 import BackgroundImage from '@/components/BackgroundImage'
 import { client } from '@/sanity/client'
 import { GALERIE_QUERY } from '@/sanity/queries'
@@ -6,14 +13,14 @@ import { GALERIE_QUERY } from '@/sanity/queries'
 export default async function GaleriePage() {
   const images = await client.fetch(GALERIE_QUERY)
 
-  // Fallback aux données mockées si Sanity n'est pas configuré
+  // Fallback aux donnÃ©es mockÃ©es si Sanity n'est pas configurÃ©
   const fallbackImages = [
-    { _id: "1", titre: "Concert Olympia", date: "2026", description: "Salle comble à Paris" },
-    { _id: "2", titre: "Studio Enregistrement", date: "2026", description: "Nouvel album en préparation" },
-    { _id: "3", titre: "Festival Afrobeat", date: "2025", description: "Performance mémorable" },
-    { _id: "4", titre: "Session Acoustique", date: "2025", description: "Intimité et émotion" },
-    { _id: "5", titre: "Tournée Africaine", date: "2025", description: "Dakar, Douala, Kinshasa" },
-    { _id: "6", titre: "Backstage", date: "2025", description: "Moments de préparation" }
+    { _id: "1", titre: "Concert Olympia", date: "2026", description: "Salle comble Ã  Paris" },
+    { _id: "2", titre: "Studio Enregistrement", date: "2026", description: "Nouvel album en prÃ©paration" },
+    { _id: "3", titre: "Festival Afrobeat", date: "2025", description: "Performance mÃ©morable" },
+    { _id: "4", titre: "Session Acoustique", date: "2025", description: "IntimitÃ© et Ã©motion" },
+    { _id: "5", titre: "TournÃ©e Africaine", date: "2025", description: "Dakar, Douala, Kinshasa" },
+    { _id: "6", titre: "Backstage", date: "2025", description: "Moments de prÃ©paration" }
   ]
 
   const imagesToShow = images.length > 0 ? images : fallbackImages
@@ -46,7 +53,7 @@ export default async function GaleriePage() {
             <div className="w-16 md:w-24 h-1 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">Galerie</h1>
-          <p className="text-lg md:text-2xl text-gray-300">Nos meilleurs moments capturés</p>
+          <p className="text-lg md:text-2xl text-gray-300">Nos meilleurs moments capturÃ©s</p>
         </div>
       </div>
 

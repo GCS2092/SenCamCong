@@ -1,4 +1,5 @@
-﻿import type { Metadata, Viewport } from "next";
+$content = @'
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BackgroundImage from "@/components/BackgroundImage";
@@ -46,16 +47,6 @@ export const viewport: Viewport = {
   themeColor: "#000000",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  name: "SenCamCong",
-  description: "Groupe musical fusionnant les sons du Senegal, Cameroun et Congo.",
-  url: "https://sencamcong.com",
-  genre: ["Afrofusion", "World Music", "Afrobeat"],
-  sameAs: ["https://www.instagram.com/sencamcong/"],
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -66,9 +57,6 @@ export default function RootLayout({
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      </head>
       <body className="min-h-screen flex flex-col relative z-10">
         <ServiceWorkerRegister />
         <div className="fixed inset-0 -z-10">
@@ -79,3 +67,7 @@ export default function RootLayout({
     </html>
   );
 }
+'@
+
+[System.IO.File]::WriteAllText("$PWD\src\app\layout.tsx", $content, [System.Text.Encoding]::UTF8)
+Write-Output "Fichier layout ecrit avec succes"

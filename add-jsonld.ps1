@@ -1,4 +1,5 @@
-﻿import type { Metadata, Viewport } from "next";
+$content = @'
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BackgroundImage from "@/components/BackgroundImage";
@@ -79,3 +80,7 @@ export default function RootLayout({
     </html>
   );
 }
+'@
+
+[System.IO.File]::WriteAllText("$PWD\src\app\layout.tsx", $content, [System.Text.Encoding]::UTF8)
+Write-Output "layout.tsx mis a jour avec JSON-LD"

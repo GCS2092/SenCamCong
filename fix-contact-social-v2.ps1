@@ -1,4 +1,5 @@
-﻿import Navigation from '@/components/Navigation'
+$content = @'
+import Navigation from '@/components/Navigation'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -136,3 +137,7 @@ export default function ContactPage() {
     </div>
   )
 }
+'@
+
+[System.IO.File]::WriteAllText("$PWD\src\app\contact\page.tsx", $content, [System.Text.Encoding]::UTF8)
+Write-Output "Fichier contact reecrit avec succes"

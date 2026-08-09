@@ -1,4 +1,11 @@
-import Navigation from '@/components/Navigation'
+﻿import Navigation from '@/components/Navigation'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Concerts",
+  description: "Decouvrez les prochaines dates et concerts de SenCamCong a travers la France et l'Europe.",
+}
+
 import ConcertCard from '@/components/ConcertCard'
 import BackgroundImage from '@/components/BackgroundImage'
 import { client } from '@/sanity/client'
@@ -9,7 +16,7 @@ const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "33612345678"
 export default async function ConcertsPage() {
   const concerts = await client.fetch(CONCERTS_QUERY)
 
-  // Fallback aux données mockées si Sanity n'est pas configuré
+  // Fallback aux donnÃ©es mockÃ©es si Sanity n'est pas configurÃ©
   const fallbackConcerts = [
     {
       _id: "1",
@@ -17,18 +24,18 @@ export default async function ConcertsPage() {
       date: "15 Juin 2026",
       lieu: "Olympia",
       ville: "Paris",
-      description: "Une soirée explosive avec les sons du Sénégal, Cameroun et Congo",
+      description: "Une soirÃ©e explosive avec les sons du SÃ©nÃ©gal, Cameroun et Congo",
       statut: "a-venir",
       lienTickets: "#",
       prixFcfa: 25000
     },
     {
       _id: "2",
-      titre: "Soirée Culturelle",
+      titre: "SoirÃ©e Culturelle",
       date: "22 Juillet 2026",
       lieu: "Zenith",
       ville: "Lyon",
-      description: "Célébration de la musique africaine",
+      description: "CÃ©lÃ©bration de la musique africaine",
       statut: "a-venir",
       lienTickets: "#",
       prixFcfa: 20000
@@ -36,10 +43,10 @@ export default async function ConcertsPage() {
     {
       _id: "3",
       titre: "Concert Caritatif",
-      date: "10 Août 2026",
+      date: "10 AoÃ»t 2026",
       lieu: "Arena",
       ville: "Marseille",
-      description: "Au profit des écoles en Afrique",
+      description: "Au profit des Ã©coles en Afrique",
       statut: "a-venir",
       lienTickets: "#",
       prixFcfa: 15000
@@ -50,29 +57,29 @@ export default async function ConcertsPage() {
       date: "5 Septembre 2026",
       lieu: "Parc des Expositions",
       ville: "Bordeaux",
-      description: "Grande scène en plein air",
+      description: "Grande scÃ¨ne en plein air",
       statut: "a-venir",
       lienTickets: "#",
       prixFcfa: 30000
     },
     {
       _id: "5",
-      titre: "Concert Privé",
+      titre: "Concert PrivÃ©",
       date: "20 Octobre 2026",
       lieu: "Bataclan",
       ville: "Paris",
-      description: "Soirée exclusive",
+      description: "SoirÃ©e exclusive",
       statut: "a-venir",
       lienTickets: "#",
       prixFcfa: 50000
     },
     {
       _id: "6",
-      titre: "Tournée Finale",
-      date: "15 Décembre 2026",
+      titre: "TournÃ©e Finale",
+      date: "15 DÃ©cembre 2026",
       lieu: "Accor Arena",
       ville: "Paris",
-      description: "Grand final de l'année",
+      description: "Grand final de l'annÃ©e",
       statut: "a-venir",
       lienTickets: "#",
       prixFcfa: 40000
