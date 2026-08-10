@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   },
   description: "Groupe musical fusionnant les sons du Senegal, Cameroun et Congo. Concerts, actualites et musique afro-fusion.",
   manifest: "/manifest.json",
+  alternates: {
+    canonical: "/",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -34,11 +37,20 @@ export const metadata: Metadata = {
     siteName: "SenCamCong",
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SenCamCong - Trois Terres, Une Voix",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SenCamCong - Trois Terres, Une Voix",
     description: "Groupe musical fusionnant les sons du Senegal, Cameroun et Congo.",
+    images: ["/og-image.jpg"],
   },
 };
 
