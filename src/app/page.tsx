@@ -4,7 +4,7 @@ import Link from 'next/link'
 import FadeIn from '@/components/FadeIn'
 import { client } from '@/sanity/client'
 import { MEMBRES_QUERY, CONCERTS_A_VENIR_QUERY, NOTRE_MUSIQUE_QUERY, NOS_PERFORMANCES_QUERY, NOTRE_HISTOIRE_QUERY, A_PROPOS_QUERY } from '@/sanity/queries'
-
+import BackgroundImage from '@/components/BackgroundImage'
 export default async function Home() {
   const membres = await client.fetch(MEMBRES_QUERY)
   const concerts = await client.fetch(CONCERTS_A_VENIR_QUERY)
@@ -34,7 +34,13 @@ export default async function Home() {
   return (
     <div className="bg-black min-h-screen">
       <Navigation />
-      <Hero />
+      <section className="relative min-h-screen overflow-hidden">
+        <BackgroundImage
+          section="accueil"
+          overlayOpacity="bg-gradient-to-b from-black/70 via-black/50 to-black/80"
+        />
+        <Hero />
+      </section>
 
       {/* Notre Musique Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
