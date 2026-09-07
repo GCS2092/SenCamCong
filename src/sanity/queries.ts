@@ -112,7 +112,10 @@ export const BACKGROUND_BY_SECTION_QUERY = `
   *[_type == "galerie" && estBackground == true && sectionBackground == $section][0] {
     _id,
     titre,
-    image { asset->{ url } },
+    image {
+      asset->{ url },
+      hotspot
+    },
     sectionBackground
   }
 `

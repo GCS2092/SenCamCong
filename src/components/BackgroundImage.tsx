@@ -7,7 +7,6 @@ interface BackgroundImageProps {
   fallback?: React.ReactNode
   className?: string
   overlayOpacity?: string
-  objectPosition?: string
 }
 
 export default async function BackgroundImage({
@@ -15,13 +14,17 @@ export default async function BackgroundImage({
   fallback,
   className = '',
   overlayOpacity = 'bg-black/40',
-  objectPosition = 'center',
 }: BackgroundImageProps) {
   const background = await client.fetch(BACKGROUND_BY_SECTION_QUERY, { section })
 
   if (!background?.image?.asset?.url) {
     return fallback || null
   }
+
+  const hotspot = background.image.hotspot
+  const objectPosition = hotspot
+    ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
+    : 'center'
 
   return (
     <div className={`absolute inset-0 z-0 overflow-hidden ${className}`}>

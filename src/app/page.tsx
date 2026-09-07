@@ -113,11 +113,37 @@ export default async function Home() {
                 key={membre.nom}
                 className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 hover:border-yellow-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-500/5 transition-all duration-300"
               >
-                <div className="w-16 md:w-20 h-16 md:h-20 rounded-full bg-gradient-to-br from-green-500 to-yellow-500 flex items-center justify-center mb-3 md:mb-4">
-                  <span className="text-xl md:text-2xl font-bold text-white">
-                    {membre.nom.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
+               <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {membresPreview.map((membre: { nom: string; role: string; origine: string; photo?: { asset?: { url?: string } } }, index: number) => (
+    <div
+      key={membre.nom}
+      className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 hover:border-yellow-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-500/5 transition-all duration-300"
+    >
+      {membre.photo?.asset?.url ? (
+        <img
+          src={membre.photo.asset.url}
+          alt={membre.nom}
+          className="w-16 md:w-20 h-16 md:h-20 rounded-full object-cover mb-3 md:mb-4"
+        />
+      ) : (
+        <div className="w-16 md:w-20 h-16 md:h-20 rounded-full bg-gradient-to-br from-green-500 to-yellow-500 flex items-center justify-center mb-3 md:mb-4">
+          <span className="text-xl md:text-2xl font-bold text-white">
+            {membre.nom.split(' ').map(n => n[0]).join('')}
+          </span>
+        </div>
+      )}
+      <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{membre.nom}</h3>
+      <p className="text-gray-400 mb-1 md:mb-2 text-sm md:text-base">{membre.role}</p>
+      <p className="text-yellow-500 text-xs md:text-sm mb-3 md:mb-4">{membre.origine}</p>
+      <Link
+        href="/membres"
+        className="inline-block px-4 md:px-6 py-2 md:py-3 bg-zinc-800 text-white rounded-full hover:bg-yellow-500 hover:text-black transition-all duration-300 text-sm md:text-base"
+      >
+        En savoir plus
+      </Link>
+    </div>
+  ))}
+</div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{membre.nom}</h3>
                 <p className="text-gray-400 mb-1 md:mb-2 text-sm md:text-base">{membre.role}</p>
                 <p className="text-yellow-500 text-xs md:text-sm mb-3 md:mb-4">{membre.origine}</p>
