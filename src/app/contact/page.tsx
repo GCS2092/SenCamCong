@@ -45,16 +45,16 @@ export default function ContactPage() {
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]">Contact</h1>
           <p className="text-lg md:text-2xl text-gray-200 drop-shadow-lg">Contactez-nous pour toute demande</p>
         </div>
-      </div>
+</div>
 
       <main className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-12 pb-24 md:pb-12">
 
         {/* Contact methods */}
         <div className="grid gap-4 sm:grid-cols-2 mb-8">
-          
+          <a
             href={`mailto:${contactEmail}`}
             className="group bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 flex flex-col items-center text-center hover:border-yellow-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-500/5 transition-all duration-300"
-          <a>
+          >
             <div className="w-14 h-14 bg-yellow-500/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-yellow-500 transition-colors duration-300">
               <Mail className="w-6 h-6 text-yellow-500 group-hover:text-black transition-colors duration-300" />
             </div>
@@ -62,12 +62,12 @@ export default function ContactPage() {
             <p className="text-gray-400 text-sm break-all">{contactEmail}</p>
           </a>
 
-          
+          <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 flex flex-col items-center text-center hover:border-green-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-green-500/5 transition-all duration-300"
-          <a>
+          >
             <div className="w-14 h-14 bg-green-500/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-500 transition-colors duration-300">
               <MessageCircle className="w-6 h-6 text-green-500 group-hover:text-white transition-colors duration-300" />
             </div>
