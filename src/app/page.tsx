@@ -5,6 +5,7 @@ import FadeIn from '@/components/FadeIn'
 import { client } from '@/sanity/client'
 import { MEMBRES_QUERY, CONCERTS_A_VENIR_QUERY, NOTRE_MUSIQUE_QUERY, NOS_PERFORMANCES_QUERY, NOTRE_HISTOIRE_QUERY, A_PROPOS_QUERY } from '@/sanity/queries'
 import BackgroundImage from '@/components/BackgroundImage'
+
 export default async function Home() {
   const membres = await client.fetch(MEMBRES_QUERY)
   const concerts = await client.fetch(CONCERTS_A_VENIR_QUERY)
@@ -34,6 +35,7 @@ export default async function Home() {
   return (
     <div className="bg-black min-h-screen">
       <Navigation />
+
       <section className="relative min-h-screen overflow-hidden">
         <BackgroundImage
           section="accueil"
@@ -52,7 +54,7 @@ export default async function Home() {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{notreMusique?.titre || "Notre Musique"}</h2>
 
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12">
+          <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 lg:p-12 hover:border-zinc-700 transition-colors duration-300">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
               {notreMusique?.description || "En fusionnant leurs voix, leurs rythmes et leurs instruments, ils créent une alchimie musicale inédite : un voyage sonore où se croisent chants traditionnels, proverbes, récits vivants et danses envoûtantes."}
             </p>
@@ -70,7 +72,7 @@ export default async function Home() {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Prochain Concert</h2>
 
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12 hover:border-green-500 transition-all duration-300">
+          <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 lg:p-12 hover:border-green-500/60 hover:shadow-xl hover:shadow-green-500/5 transition-all duration-300">
             <div className="grid gap-6 md:gap-8 md:grid-cols-2">
               <div>
                 <span className="text-green-500 text-xs md:text-sm font-semibold uppercase tracking-wider mb-2 block">
@@ -95,7 +97,7 @@ export default async function Home() {
       </section>
 
       {/* Membres Preview Section */}
-      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/50">
+      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/30">
         <FadeIn delay={300}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
@@ -109,7 +111,7 @@ export default async function Home() {
             {membresPreview.map((membre: { nom: string; role: string; origine: string }, index: number) => (
               <div
                 key={membre.nom}
-                className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-yellow-500 transition-all duration-300"
+                className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 hover:border-yellow-500/60 hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-500/5 transition-all duration-300"
               >
                 <div className="w-16 md:w-20 h-16 md:h-20 rounded-full bg-gradient-to-br from-green-500 to-yellow-500 flex items-center justify-center mb-3 md:mb-4">
                   <span className="text-xl md:text-2xl font-bold text-white">
@@ -150,26 +152,26 @@ export default async function Home() {
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{nosPerformances?.titre || "Nos Performances"}</h2>
 
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 lg:p-12 mb-8">
+          <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 lg:p-12 mb-8">
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
               {nosPerformances?.description || "Avec des arrangements à couper le souffle et une énergie scénique communicative, SenCamCong incarne l'Afrique qui se réinvente, qui se raconte et qui s'exporte."}
             </p>
           </div>
 
           <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-red-500 mb-1 md:mb-2">{nosPerformances?.concerts || "150+"}</div>
               <div className="text-white text-sm md:text-base">Concerts</div>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 mb-1 md:mb-2">{nosPerformances?.pays || "12"}</div>
               <div className="text-white text-sm md:text-base">Pays</div>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-green-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-green-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-500 mb-1 md:mb-2">{nosPerformances?.spectateurs || "50K+"}</div>
               <div className="text-white text-sm md:text-base">Spectateurs</div>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 mb-1 md:mb-2">{nosPerformances?.albums || "5"}</div>
               <div className="text-white text-sm md:text-base">Albums</div>
             </div>
@@ -178,7 +180,7 @@ export default async function Home() {
       </section>
 
       {/* Notre Histoire Section */}
-      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/50">
+      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/30">
         <FadeIn delay={500}>
           <div className="flex gap-2 mb-6 md:mb-8">
             <div className="w-8 md:w-12 h-1 bg-green-500"></div>
@@ -191,11 +193,11 @@ export default async function Home() {
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
               {notreHistoire?.description || "Plus qu'un simple projet musical, SenCamCong est une célébration des similitudes rythmiques et des influences partagées entre ces trois nations. Dans un monde marqué par la globalisation, ce trio démontre que la force de la musique réside dans la mixité, le dialogue et la collaboration."}
             </p>
-            
+
             {(notreHistoire?.evenements || []).map((evenement: any, index: number) => (
-              <div key={index} className="flex gap-4 md:gap-6">
-                <div className="w-20 md:w-32 flex-shrink-0">
-                  <div className={`${index === 0 ? 'text-green-500' : index === 1 ? 'text-yellow-500' : 'text-red-500'} font-bold text-lg md:text-xl`}>
+              <div key={index} className="flex gap-4 md:gap-6 border-l border-zinc-800 pl-4 md:pl-6">
+                <div className="w-20 md:w-32 flex-shrink-0 -ml-4 md:-ml-6">
+                  <div className={`${index === 0 ? 'text-green-500' : index === 1 ? 'text-yellow-500' : 'text-red-500'} font-bold text-lg md:text-xl pl-4 md:pl-6`}>
                     {evenement.annee}
                   </div>
                 </div>
@@ -205,7 +207,7 @@ export default async function Home() {
                 </div>
               </div>
             ))}
-            
+
             {(!notreHistoire?.evenements || notreHistoire.evenements.length === 0) && (
               <>
                 <div className="flex gap-4 md:gap-6">
@@ -261,21 +263,21 @@ export default async function Home() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">{aPropos?.titre || "À Propos"}</h2>
 
           <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-green-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-green-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-green-500 flex items-center justify-center mb-3 md:mb-4">
                 <span className="text-xl md:text-2xl font-bold text-white">SN</span>
               </div>
               <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{aPropos?.senegal?.titre || "Sénégal"}</h3>
               <p className="text-gray-400 text-sm md:text-base">{aPropos?.senegal?.description || "Rythmes wolof, sabar et mbalax pour une énergie pure et authentique."}</p>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-yellow-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-yellow-500 flex items-center justify-center mb-3 md:mb-4">
                 <span className="text-xl md:text-2xl font-bold text-white">CM</span>
               </div>
               <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{aPropos?.cameroun?.titre || "Cameroun"}</h3>
               <p className="text-gray-400 text-sm md:text-base">{aPropos?.cameroun?.description || "Influences makossa, bikutsi et afrobeat pour une fusion moderne."}</p>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500 transition-all duration-300">
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-4 md:p-6 lg:p-8 hover:border-red-500/60 hover:-translate-y-1 transition-all duration-300">
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-red-500 flex items-center justify-center mb-3 md:mb-4">
                 <span className="text-xl md:text-2xl font-bold text-white">CG</span>
               </div>
@@ -287,7 +289,7 @@ export default async function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/50">
+      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/30">
         <FadeIn delay={700}>
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 md:mb-8">Un rendez-vous musical à ne pas manquer</h2>

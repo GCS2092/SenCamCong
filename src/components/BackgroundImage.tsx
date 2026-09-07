@@ -7,29 +7,32 @@ interface BackgroundImageProps {
   fallback?: React.ReactNode
   className?: string
   overlayOpacity?: string
+  objectPosition?: string
 }
 
-export default async function BackgroundImage({ section, fallback, className = '', overlayOpacity = 'bg-black/40' }: BackgroundImageProps) {
+export default async function BackgroundImage({
+  section,
+  fallback,
+  className = '',
+  overlayOpacity = 'bg-black/40',
+  objectPosition = 'center',
+}: BackgroundImageProps) {
   const background = await client.fetch(BACKGROUND_BY_SECTION_QUERY, { section })
-  
-  console.log('BackgroundImage section:', section, 'result:', background)
 
-  if (!background || !background.image || !background.image.asset || !background.image.asset.url) {
-    console.log('BackgroundImage: no valid image found, using fallback')
+  if (!background?.image?.asset?.url) {
     return fallback || null
   }
 
   return (
-    <div className={`absolute inset-0 ${className}`}>
+    <div className={`absolute inset-0 z-0 overflow-hidden ${className}`}>
       <Image
         src={background.image.asset.url}
-        alt={background.titre}
+        alt={background.titre || ''}
         fill
         priority
-        className="object-cover"
         sizes="100vw"
-        quality={95}
-        style={{ objectFit: 'cover', objectPosition: 'top center' }}
+        quality={90}
+        style={{ objectFit: 'cover', objectPosition }}
       />
       <div className={`absolute inset-0 ${overlayOpacity}`} />
     </div>
