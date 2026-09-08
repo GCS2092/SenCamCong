@@ -15,7 +15,11 @@ export default async function BackgroundImage({
   className = '',
   overlayOpacity = 'bg-black/40',
 }: BackgroundImageProps) {
-  const background = await client.fetch(BACKGROUND_BY_SECTION_QUERY, { section })
+  const background = await client.fetch(
+    BACKGROUND_BY_SECTION_QUERY,
+    { section },
+    { next: { revalidate: 60 } }
+  )
 
   if (!background?.image?.asset?.url) {
     return fallback || null
