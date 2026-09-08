@@ -19,12 +19,7 @@ export default async function Home() {
     date: new Date(concerts[0].date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
     lieu: concerts[0].lieu,
     description: concerts[0].description
-  } : {
-    titre: "Festival Afrobeat",
-    date: "15 Juin 2026",
-    lieu: "Olympia, Paris",
-    description: "Une soirée explosive avec les sons du Sénégal, Cameroun et Congo"
-  }
+  } : null
 
   const membresPreview = membres.length > 0 ? membres.slice(0, 3) : [
     { nom: "Amadou Diallo", role: "Chant / Percussions", origine: "Sénégal" },
@@ -65,38 +60,40 @@ export default async function Home() {
       </section>
 
       {/* Prochain Concert Section */}
-      <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <FadeIn delay={200}>
-          <div className="flex gap-2 mb-6 md:mb-8">
-            <div className="w-8 md:w-12 h-1 bg-green-500"></div>
-            <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
-            <div className="w-8 md:w-12 h-1 bg-red-500"></div>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Prochain Concert</h2>
+      {prochainConcert && (
+        <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          <FadeIn delay={200}>
+            <div className="flex gap-2 mb-6 md:mb-8">
+              <div className="w-8 md:w-12 h-1 bg-green-500"></div>
+              <div className="w-8 md:w-12 h-1 bg-yellow-500"></div>
+              <div className="w-8 md:w-12 h-1 bg-red-500"></div>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 md:mb-12">Prochain Concert</h2>
 
-          <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 lg:p-12 hover:border-green-500/60 hover:shadow-xl hover:shadow-green-500/5 transition-all duration-300">
-            <div className="grid gap-6 md:gap-8 md:grid-cols-2">
-              <div>
-                <span className="text-green-500 text-xs md:text-sm font-semibold uppercase tracking-wider mb-2 block">
-                  À venir
-                </span>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">{prochainConcert.titre}</h3>
-                <p className="text-gray-400 mb-1 md:mb-2 text-sm md:text-base">{prochainConcert.date}</p>
-                <p className="text-white mb-3 md:mb-4 text-sm md:text-base">{prochainConcert.lieu}</p>
-                <p className="text-gray-400 text-sm md:text-base">{prochainConcert.description}</p>
-              </div>
-              <div className="flex flex-col justify-center">
-                <Link
-                  href="/concerts"
-                  className="inline-block text-center px-6 md:px-8 py-3 md:py-4 bg-white text-black font-semibold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
-                >
-                  Voir tous les concerts
-                </Link>
+            <div className="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800/80 rounded-2xl p-6 md:p-8 lg:p-12 hover:border-green-500/60 hover:shadow-xl hover:shadow-green-500/5 transition-all duration-300">
+              <div className="grid gap-6 md:gap-8 md:grid-cols-2">
+                <div>
+                  <span className="text-green-500 text-xs md:text-sm font-semibold uppercase tracking-wider mb-2 block">
+                    À venir
+                  </span>
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4">{prochainConcert.titre}</h3>
+                  <p className="text-gray-400 mb-1 md:mb-2 text-sm md:text-base">{prochainConcert.date}</p>
+                  <p className="text-white mb-3 md:mb-4 text-sm md:text-base">{prochainConcert.lieu}</p>
+                  <p className="text-gray-400 text-sm md:text-base">{prochainConcert.description}</p>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <Link
+                    href="/concerts"
+                    className="inline-block text-center px-6 md:px-8 py-3 md:py-4 bg-white text-black font-semibold rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105 text-sm md:text-base"
+                  >
+                    Voir tous les concerts
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        </FadeIn>
-      </section>
+          </FadeIn>
+        </section>
+      )}
 
       {/* Membres Preview Section */}
       <section className="py-12 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-zinc-900/30">

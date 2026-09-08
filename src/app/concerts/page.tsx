@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: "Concerts",
-  description: "Decouvrez les prochaines dates et concerts de SenCamCong a travers la France et l'Europe.",
+  description: "Decouvrez les prochaines dates et concerts de SenCamCong.",
 }
 
 import ConcertCard from '@/components/ConcertCard'
@@ -16,82 +16,10 @@ const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "33612345678"
 export default async function ConcertsPage() {
   const concerts = await client.fetch(CONCERTS_QUERY)
 
-  // Fallback aux donnÃ©es mockÃ©es si Sanity n'est pas configurÃ©
-  const fallbackConcerts = [
-    {
-      _id: "1",
-      titre: "Festival Afrobeat",
-      date: "15 Juin 2026",
-      lieu: "Olympia",
-      ville: "Paris",
-      description: "Une soirÃ©e explosive avec les sons du SÃ©nÃ©gal, Cameroun et Congo",
-      statut: "a-venir",
-      lienTickets: "#",
-      prixFcfa: 25000
-    },
-    {
-      _id: "2",
-      titre: "SoirÃ©e Culturelle",
-      date: "22 Juillet 2026",
-      lieu: "Zenith",
-      ville: "Lyon",
-      description: "CÃ©lÃ©bration de la musique africaine",
-      statut: "a-venir",
-      lienTickets: "#",
-      prixFcfa: 20000
-    },
-    {
-      _id: "3",
-      titre: "Concert Caritatif",
-      date: "10 AoÃ»t 2026",
-      lieu: "Arena",
-      ville: "Marseille",
-      description: "Au profit des Ã©coles en Afrique",
-      statut: "a-venir",
-      lienTickets: "#",
-      prixFcfa: 15000
-    },
-    {
-      _id: "4",
-      titre: "Festival Summer",
-      date: "5 Septembre 2026",
-      lieu: "Parc des Expositions",
-      ville: "Bordeaux",
-      description: "Grande scÃ¨ne en plein air",
-      statut: "a-venir",
-      lienTickets: "#",
-      prixFcfa: 30000
-    },
-    {
-      _id: "5",
-      titre: "Concert PrivÃ©",
-      date: "20 Octobre 2026",
-      lieu: "Bataclan",
-      ville: "Paris",
-      description: "SoirÃ©e exclusive",
-      statut: "a-venir",
-      lienTickets: "#",
-      prixFcfa: 50000
-    },
-    {
-      _id: "6",
-      titre: "TournÃ©e Finale",
-      date: "15 DÃ©cembre 2026",
-      lieu: "Accor Arena",
-      ville: "Paris",
-      description: "Grand final de l'annÃ©e",
-      statut: "a-venir",
-      lienTickets: "#",
-      prixFcfa: 40000
-    }
-  ]
-
-  const concertsToShow = concerts.length > 0 ? concerts : fallbackConcerts
-
   return (
     <div className="bg-black min-h-screen">
       <Navigation />
-      
+
       {/* Page Header */}
       <div className="relative h-64 md:h-80 overflow-hidden">
         <BackgroundImage
@@ -108,7 +36,7 @@ export default async function ConcertsPage() {
             </div>
           }
         />
-        
+
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
           <div className="flex gap-3 mb-6">
             <div className="w-16 md:w-24 h-1 bg-green-500 rounded-full animate-pulse"></div>
@@ -121,12 +49,18 @@ export default async function ConcertsPage() {
       </div>
 
       <main className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto py-12 pb-24 md:pb-12">
-
-        <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {concertsToShow.map((concert: any) => (
-            <ConcertCard key={concert._id} concert={concert} whatsappNumber={whatsappNumber} />
-          ))}
-        </div>
+        {concerts.length > 0 ? (
+          <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {concerts.map((concert: any) => (
+              <ConcertCard key={concert._id} concert={concert} whatsappNumber={whatsappNumber} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-gray-400 text-lg">Aucune date annoncée pour le moment.</p>
+            <p className="text-gray-500 text-sm mt-2">Revenez bientôt pour découvrir nos prochains concerts.</p>
+          </div>
+        )}
       </main>
     </div>
   )
