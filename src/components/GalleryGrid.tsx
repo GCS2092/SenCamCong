@@ -49,7 +49,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
 
   return (
     <>
-      <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
         {images.map((image, index) => (
           <button
             key={image._id}
@@ -76,15 +76,15 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
               </div>
             )}
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 md:p-6">
               <div className="flex items-center gap-1.5 mb-2">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
                 <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full"></div>
                 <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-1">{image.titre}</h3>
-              <p className="text-red-400 text-sm font-medium mb-2">{image.date}</p>
-              <p className="text-gray-300 text-sm">{image.description}</p>
+              <h3 className="text-sm md:text-xl font-bold text-white mb-1 line-clamp-1">{image.titre}</h3>
+              <p className="text-red-400 text-xs md:text-sm font-medium mb-1 md:mb-2">{image.date}</p>
+              <p className="hidden md:block text-gray-300 text-sm">{image.description}</p>
             </div>
           </button>
         ))}

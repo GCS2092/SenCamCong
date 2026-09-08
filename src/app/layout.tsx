@@ -77,6 +77,7 @@ export default function RootLayout({
     <html
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <head>
         <script
@@ -94,7 +95,7 @@ export default function RootLayout({
         />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className="min-h-screen flex flex-col relative z-10">
+      <body className="min-h-screen flex flex-col relative z-10" suppressHydrationWarning>
         <ServiceWorkerRegister />
         <div className="fixed inset-0 -z-10">
           <BackgroundImage section="global" overlayOpacity="bg-black/20" />

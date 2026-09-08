@@ -39,7 +39,7 @@ export default async function Home() {
       <section className="relative min-h-screen overflow-hidden">
         <BackgroundImage
           section="accueil"
-          overlayOpacity="bg-gradient-to-b from-black/70 via-black/50 to-black/80"
+          overlayOpacity="bg-black/30"
         />
         <div className="relative z-10">
           <Hero />
