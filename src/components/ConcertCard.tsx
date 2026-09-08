@@ -22,8 +22,30 @@ interface ConcertCardProps {
   whatsappNumber?: string
 }
 
+function formatConcertDate(dateStr: string): string {
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return dateStr
+
+  const datePart = date.toLocaleDateString('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+
+  const hasTime = dateStr.includes('T')
+  if (!hasTime) return datePart
+
+  const timePart = date.toLocaleTimeString('fr-FR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+
+  return `${datePart}, ${timePart}`
+}
+
 export default function ConcertCard({ concert, whatsappNumber = "33612345678" }: ConcertCardProps) {
   const id = concert._id || concert.id
+  const displayDate = formatConcertDate(concert.date)
 
   const statutLabels = {
     'a-venir': 'À venir',
@@ -31,7 +53,7 @@ export default function ConcertCard({ concert, whatsappNumber = "33612345678" }:
     'complet': 'Complet'
   }
 
-  const whatsappMessage = `Bonjour, je souhaite réserver des places pour le concert "${concert.titre}" le ${concert.date} à ${concert.lieu}. Merci de me renseigner sur les disponibilités.`
+  const whatsappMessage = `Bonjour, je souhaite réserver des places pour le concert "${concert.titre}" le ${displayDate} à ${concert.lieu}. Merci de me renseigner sur les disponibilités.`
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
 
   return (
@@ -80,7 +102,7 @@ export default function ConcertCard({ concert, whatsappNumber = "33612345678" }:
             <svg className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
-            {concert.date}
+            {displayDate}
           </p>
           <p className="text-white flex items-center gap-2">
             <svg className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
