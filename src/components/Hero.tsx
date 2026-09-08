@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Hero() {
   return (
-    <div className="relative z-10 min-h-screen flex items-center justify-center px-4">
+    <div className="relative z-10 min-h-screen flex items-end justify-center px-4 pb-24 md:pb-32">
       {/* Halos colorés animés, au-dessus de la photo de fond */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500 rounded-full blur-3xl animate-pulse"></div>
@@ -13,26 +13,26 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 text-center">
-        <div className="mb-8">
-          <div className="flex justify-center gap-2 mb-6">
+        <div className="mb-6 md:mb-8">
+          <div className="flex justify-center gap-2 mb-4 md:mb-6">
             <div className="w-16 h-1 bg-green-500"></div>
             <div className="w-16 h-1 bg-yellow-500"></div>
             <div className="w-16 h-1 bg-red-500"></div>
           </div>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+          <h1 className="text-5xl md:text-8xl font-bold text-white mb-3 md:mb-4 tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
             SenCamCong
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light drop-shadow-lg">
+          <p className="text-lg md:text-2xl text-gray-200 mb-6 md:mb-8 font-light drop-shadow-lg">
             Sénégal • Cameroun • Congo
           </p>
-          <div className="flex justify-center gap-2 mb-8">
+          <div className="flex justify-center gap-2 mb-6 md:mb-8">
             <div className="w-16 h-1 bg-red-500"></div>
             <div className="w-16 h-1 bg-yellow-500"></div>
             <div className="w-16 h-1 bg-green-500"></div>
           </div>
         </div>
 
-        <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 drop-shadow-lg">
+        <p className="hidden md:block text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-12 drop-shadow-lg">
           Quand le Sénégal, le Cameroun et le Congo s'unissent, la musique devient un langage universel. SenCamCong, c'est la rencontre exceptionnelle de trois artistes musiciens talentueux, chacun porteur de son héritage culturel et de son expérience artistique.
         </p>
 
