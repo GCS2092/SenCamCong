@@ -1,11 +1,11 @@
 ﻿import { MetadataRoute } from 'next'
 import { client } from '@/sanity/client'
-import { CONCERTS_QUERY, MEMBRES_QUERY } from '@/sanity/queries'
+import { CONCERTS_QUERY, MEMBRES_QUERY, ACTUALITES_QUERY } from '@/sanity/queries'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://sencamcong.com'
 
-  const staticRoutes: MetadataRoute.Sitemap = ['', '/concerts', '/membres', '/galerie', '/contact'].map((route) => ({
+  const staticRoutes: MetadataRoute.Sitemap = ['', '/concerts', '/membres', '/galerie', '/actualites', '/contact'].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
@@ -38,5 +38,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     membreRoutes = []
   }
 
-  return [...staticRoutes, ...concertRoutes, ...membreRoutes]
+  let actualiteRoutes: MetadataRoute.Sitemap = []
+  try {
+    const actualites = await client.fetch(ACTUALITES_QUERY)
+    actualiteRoutes = actualites
+      .map((a: { _id: string; slug?: { current?: string } }) => ({
+        url: `${baseUrl}/actualites/${a.slug?.current || a._id}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }))
+  } catch {
+    actualiteRoutes = []
+  }
+
+  return [...staticRoutes, ...concertRoutes, ...membreRoutes, ...actualiteRoutes]
 }

@@ -150,6 +150,37 @@ export const NOTRE_HISTOIRE_QUERY = `
   }
 `
 
+export const ACTUALITES_QUERY = `
+  *[_type == "actualite"] | order(date desc) {
+    _id,
+    titre,
+    slug,
+    date,
+    categorie,
+    extrait,
+    imagePrincipale { asset->{ url } },
+    miseEnAvant
+  }
+`
+
+export const ACTUALITE_BY_SLUG_QUERY = `
+  *[_type == "actualite" && slug.current == $slug][0] {
+    _id,
+    titre,
+    slug,
+    date,
+    categorie,
+    extrait,
+    imagePrincipale { asset->{ url } },
+    miseEnAvant,
+    sections[] {
+      titre,
+      texte,
+      image { asset->{ url } }
+    }
+  }
+`
+
 export const A_PROPOS_QUERY = `
   *[_type == "aPropos"][0] {
     titre,

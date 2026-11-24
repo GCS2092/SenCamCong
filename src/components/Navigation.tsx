@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Music, Users, Camera, MessageSquare } from 'lucide-react'
+import { Home, Music, Users, Camera, MessageSquare, Newspaper } from 'lucide-react'
 import Logo from '@/components/Logo'
 
 export default function Navigation() {
@@ -23,6 +23,7 @@ export default function Navigation() {
     { href: '/concerts', label: 'Concerts', icon: Music },
     { href: '/membres', label: 'Membres', icon: Users },
     { href: '/galerie', label: 'Galerie', icon: Camera },
+    { href: '/actualites', label: 'Actualités', icon: Newspaper },
     { href: '/contact', label: 'Contact', icon: MessageSquare },
   ]
 
@@ -45,6 +46,7 @@ export default function Navigation() {
               <Link href="/concerts" className="text-gray-300 hover:text-white transition-colors">Concerts</Link>
               <Link href="/membres" className="text-gray-300 hover:text-white transition-colors">Membres</Link>
               <Link href="/galerie" className="text-gray-300 hover:text-white transition-colors">Galerie</Link>
+              <Link href="/actualites" className="text-gray-300 hover:text-white transition-colors">Actualités</Link>
               <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link>
             </div>
 

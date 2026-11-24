@@ -3,7 +3,7 @@ import { client } from '@/sanity/client'
 import { BACKGROUND_BY_SECTION_QUERY } from '@/sanity/queries'
 
 interface BackgroundImageProps {
-  section: 'accueil' | 'concerts' | 'membres' | 'galerie' | 'contact' | 'global'
+  section: 'accueil' | 'concerts' | 'membres' | 'galerie' | 'actualites' | 'contact' | 'global'
   fallback?: React.ReactNode
   className?: string
   overlayOpacity?: string

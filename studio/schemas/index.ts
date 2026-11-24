@@ -5,5 +5,6 @@ import notreMusique from './notreMusique'
 import nosPerformances from './nosPerformances'
 import notreHistoire from './notreHistoire'
 import aPropos from './aPropos'
+import actualite from './actualite'
 
-export const schemaTypes = [concert, membre, galerie, notreMusique, nosPerformances, notreHistoire, aPropos]
+export const schemaTypes = [concert, membre, galerie, notreMusique, nosPerformances, notreHistoire, aPropos, actualite]
